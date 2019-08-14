@@ -5,14 +5,19 @@ var fs = require('fs');
 var path = require('path');
 var plist = require('plist');
 var utils = require("./utils");
+var DOMParser = require('xmldom').DOMParser;
+var XMLSerializer = require('xmldom').XMLSerializer;
 
 module.exports = function(context) {
-    console.log("Hello");
     return new Promise(function(resolve, reject) {
 
-        function findInfoPlist(base, files, result) {
+        var platform = context.opts.platforms[0];
+
+        function findFacebookConfigFile(base, files, result) {
+            var fileNameToFindRegEx = (platform == "ios" ? /[a-z]+-info.plist/gi : /facebookconnect\.xml/gi)
+            
             files = files || fs.readdirSync(base);
-            result = result || "*-info.plist not found";
+            result = result || (platform == "ios" ? "*-info.plist not found" : "facebookconnect.xml not found");
 
             files.some(function(file) {
                 var newDir = path.join(base, file);
@@ -23,10 +28,9 @@ module.exports = function(context) {
                     isDirectory = false;
                 }
                 if (isDirectory) {
-                    result = findInfoPlist(newDir, fs.readdirSync(newDir), result);
+                    result = findFacebookConfigFile(newDir, fs.readdirSync(newDir), result);
                 } else {
-                    var regex = /[a-z]+-info.plist/gi;
-                    var match = regex.exec(file);
+                    var match = fileNameToFindRegEx.exec(file);
                     if (match && match.length !== 0) {
                         result = path.join(base, file);
                         return true;
@@ -68,7 +72,7 @@ module.exports = function(context) {
             } catch(err) {}
         }
 
-        console.log(context);
+        console.log(context);   
         var wwwPath = utils.getWwwPath(context);
         var configPath = path.join(wwwPath, "facebookLogin");
 
@@ -86,15 +90,32 @@ module.exports = function(context) {
                 var facebookLoginJSON = JSON.parse(jsonString);
 
                 var notFoundRegEx = /not found/gi;
-                var result = findInfoPlist(utils.getPlatformPath(context)); 
+                var result = findFacebookConfigFile(utils.getPlatformPath(context)); 
+                console.log(platform + ": " + result);
                 var match = notFoundRegEx.exec(result);
                 if (!match) {
-                    var jsonObj = plist.parse(fs.readFileSync(result, 'utf-8'));
-                    jsonObj.FacebookAppID = facebookLoginJSON.APP_ID;
-                    jsonObj.FacebookDisplayName = facebookLoginJSON.APP_NAME;
-                    jsonObj.CFBundleURLTypes[0].CFBundleURLSchemes[0] = "fb" + facebookLoginJSON.APP_ID;
-                    var builtJSON = plist.build(jsonObj);
-                    fs.writeFileSync(result, builtJSON);
+                    switch (platform) {
+                        case "ios":
+                            var jsonObj = plist.parse(fs.readFileSync(result, 'utf-8'));
+                            jsonObj.FacebookAppID = facebookLoginJSON.APP_ID;
+                            jsonObj.FacebookDisplayName = facebookLoginJSON.APP_NAME;
+                            jsonObj.CFBundleURLTypes[0].CFBundleURLSchemes[0] = "fb" + facebookLoginJSON.APP_ID;
+                            var builtJSON = plist.build(jsonObj);
+                            break;
+                    
+                        default:
+                            var parser = new DOMParser();
+                            var xmlContents = fs.readFileSync(result, 'utf-8');
+                            var doc = parser.parseFromString(xmlContents, "text/xml");
+                            doc.getElementsByTagName("string")[0].textContent = facebookLoginJSON.APP_ID;
+                            doc.getElementsByTagName("string")[1].textContent = facebookLoginJSON.APP_NAME;
+                            var xmlSerializer = new XMLSerializer();
+                            console.log(xmlSerializer.serializeToString(doc));
+                            fs.writeFileSync(result, xmlSerializer.serializeToString(doc))
+                            break;
+                    }
+                    
+                    //fs.writeFileSync(result, builtJSON);
                 } else {
                     console.log(result);
                 }
