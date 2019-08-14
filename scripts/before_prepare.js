@@ -101,6 +101,7 @@ module.exports = function(context) {
                             jsonObj.FacebookDisplayName = facebookLoginJSON.APP_NAME;
                             jsonObj.CFBundleURLTypes[0].CFBundleURLSchemes[0] = "fb" + facebookLoginJSON.APP_ID;
                             var builtJSON = plist.build(jsonObj);
+                            fs.writeFileSync(result, builtJSON);
                             break;
                     
                         default:
@@ -114,8 +115,6 @@ module.exports = function(context) {
                             fs.writeFileSync(result, xmlSerializer.serializeToString(doc))
                             break;
                     }
-                    
-                    //fs.writeFileSync(result, builtJSON);
                 } else {
                     console.log(result);
                 }
