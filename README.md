@@ -104,12 +104,14 @@ Share Dialog:
 {
   "method": "share",
   "href": "http://example.com",
-  "caption:" "Such caption, very feed.",
+  "caption": "Such caption, very feed.",
   "description": "Much description",
   "picture": "http://example.com/image.png",
-  "share_feedWeb": true, // iOS only
+  "share_feedWeb": true
 }
 ```
+
+> <b>Note</b> ```share_feedweb``` is ignored in Android
 
 For iOS, the default dialog mode is [`FBSDKShareDialogModeAutomatic`](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/). You can share that by adding a specific dialog mode parameter. The available share dialog modes are: `share_sheet`, `share_feedBrowser`, `share_native` and `share_feedWeb`. [Read more about share dialog modes](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/)
 
@@ -119,8 +121,8 @@ Game request:
 {
   "method": "apprequests",
   "message": "Come on man, check out my application.",
-  "data": data,
-  "title": title,
+  "data": "dataString",
+  "title": "title",
   "actionType": "askfor",
   "filters": "app_non_users"
 }
