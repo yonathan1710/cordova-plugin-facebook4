@@ -16,8 +16,8 @@ In order to use this plugin, you must provide a JSON file with the following for
 
 ```json
 {
-  APP_ID: "123456789",
-  APP_NAME: "myApplication"
+  "APP_ID": "123456789",
+  "APP_NAME": "myApplication"
 }
 ```
 
