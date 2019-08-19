@@ -55,14 +55,14 @@ Success function returns an Object like:
 
 ```json
 {
-  status: "connected",
-  authResponse: {
-    session_key: true,
-    accessToken: "<long string>",
-    expiresIn: 5183979,
-    sig: "...",
-    secret: "...",
-    userID: "634565435"
+  "status": "connected",
+  "authResponse": {
+    "session_key": true,
+    "accessToken": "<long string>",
+    "expiresIn": 5183979,
+    "sig": "...",
+    "secret": "...",
+    "userID": "634565435"
   }
 }
 ```
@@ -81,12 +81,12 @@ Success function returns an Object like:
 
 ```json
 {
-	authResponse: {
-		userID: "12345678912345",
-		accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
-		session_Key: true,
-		expiresIn: "5183738",
-		sig: "..."
+	"authResponse": {
+		"userID": "12345678912345",
+		"accessToken": "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
+		"session_Key": true,
+		"expiresIn": "5183738",
+		"sig": "..."
 	},
 	status: "connected"
 }
@@ -102,12 +102,12 @@ Share Dialog:
 
 ```json
 {
-  method: "share",
-  href: "http://example.com",
-  caption: "Such caption, very feed.",
-  description: "Much description",
-  picture: "http://example.com/image.png"
-  share_feedWeb: true, // iOS only
+  "method": "share",
+  "href": "http://example.com",
+  "caption:" "Such caption, very feed.",
+  "description": "Much description",
+  "picture": "http://example.com/image.png",
+  "share_feedWeb": true, // iOS only
 }
 ```
 
@@ -117,12 +117,12 @@ Game request:
 
 ```json
 {
-  method: "apprequests",
-  message: "Come on man, check out my application.",
-  data: data,
-  title: title,
-  actionType: 'askfor',
-  filters: 'app_non_users'
+  "method": "apprequests",
+  "message": "Come on man, check out my application.",
+  "data": data,
+  "title": title,
+  "actionType": "askfor",
+  "filters": "app_non_users"
 }
 ```
 
@@ -130,11 +130,11 @@ Send Dialog:
 
 ```json
 {
-  method: "send",
-  caption: "Check this out.",
-  link: "http://example.com",
-  description: "The site I told you about",
-  picture: "http://example.com/image.png"
+  "method": "send",
+  "caption": "Check this out.",
+  "link": "http://example.com",
+  "description": "The site I told you about",
+  "picture": "http://example.com/image.png"
 }
 ```
 	
@@ -235,8 +235,8 @@ Example options:
 
 ```json
 {
-  url: "http://example.com",
-  picture: "http://example.com/image.png"
+  "url": "http://example.com",
+  "picture": "http://example.com/image.png"
 }
 ```
 
