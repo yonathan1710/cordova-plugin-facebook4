@@ -12,7 +12,7 @@ Make sure you've registered your Facebook app with Facebook and have an `APP_ID`
 $ cordova plugin add cordova-plugin-facebook4 --save
 ```
 
-In order to use this plugin, you must provide a JSON file with the following format:
+If you want to use a different APP_ID than the one specified in the "Accessibility configuration" in your OutSystems application, you must provide a JSON file named ```facebook_login.json```, deployed to a directory named ```facebookLogin``` with the following format:
 
 ```json
 {
