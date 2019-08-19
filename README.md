@@ -88,7 +88,7 @@ Success function returns an Object like:
 		"expiresIn": "5183738",
 		"sig": "..."
 	},
-	status: "connected"
+	"status": "connected"
 }
 ```
 For more information see: [Facebook Documentation](https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus)
@@ -111,7 +111,7 @@ Share Dialog:
 }
 ```
 
-> <b>Note</b> ```share_feedweb``` is ignored in Android
+> <b>Note</b> ```share_feedWeb``` is ignored in Android
 
 For iOS, the default dialog mode is [`FBSDKShareDialogModeAutomatic`](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/). You can share that by adding a specific dialog mode parameter. The available share dialog modes are: `share_sheet`, `share_feedBrowser`, `share_native` and `share_feedWeb`. [Read more about share dialog modes](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/)
 
