@@ -18,45 +18,80 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+#if TARGET_OS_TV
+
+// This is an unfortunate hack for Swift Package Manager support.
+// SPM does not allow us to conditionally exclude Swift files for compilation by platform.
+//
+// So to support tvOS with SPM we need to use runtime availability checks in the Swift files.
+// This means that even though the code in `LoginManager.swift` will never be run for tvOS
+// targets, it still needs to be able to compile. Hence we need to declare it here.
+//
+// The way to fix this is to remove extensions of ObjC types in Swift.
+// This will be be done in the next major release (6.0)
+
+@interface LoginManagerLoginResult : NSObject
+
+@property (copy, nonatomic, nullable) FBSDKAccessToken *token;
+@property (readonly, nonatomic) BOOL isCancelled;
+@property (copy, nonatomic) NSSet<NSString *> *grantedPermissions;
+@property (copy, nonatomic) NSSet<NSString *> *declinedPermissions;
+
+@end
+
+#else
+
 @class FBSDKAccessToken;
 
-/*!
- @abstract Describes the result of a login attempt.
+/**
+  Describes the result of a login attempt.
  */
+NS_SWIFT_NAME(LoginManagerLoginResult)
 @interface FBSDKLoginManagerLoginResult : NSObject
 
-/*!
- @abstract the access token.
- */
-@property (copy, nonatomic) FBSDKAccessToken *token;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
-/*!
- @abstract whether the login was cancelled by the user.
+/**
+  the access token.
+ */
+@property (copy, nonatomic, nullable) FBSDKAccessToken *token;
+
+/**
+  whether the login was cancelled by the user.
  */
 @property (readonly, nonatomic) BOOL isCancelled;
 
-/*!
- @abstract the set of permissions granted by the user in the associated request.
- @discussion inspect the token's permissions set for a complete list.
- */
-@property (copy, nonatomic) NSSet *grantedPermissions;
+/**
+  the set of permissions granted by the user in the associated request.
 
-/*!
- @abstract the set of permissions declined by the user in the associated request.
- @discussion inspect the token's permissions set for a complete list.
+ inspect the token's permissions set for a complete list.
  */
-@property (copy, nonatomic) NSSet *declinedPermissions;
+@property (copy, nonatomic) NSSet<NSString *> *grantedPermissions;
 
-/*!
- @abstract Initializes a new instance.
+/**
+  the set of permissions declined by the user in the associated request.
+
+ inspect the token's permissions set for a complete list.
+ */
+@property (copy, nonatomic) NSSet<NSString *> *declinedPermissions;
+
+/**
+  Initializes a new instance.
  @param token the access token
  @param isCancelled whether the login was cancelled by the user
  @param grantedPermissions the set of granted permissions
  @param declinedPermissions the set of declined permissions
  */
-- (instancetype)initWithToken:(FBSDKAccessToken *)token
+- (instancetype)initWithToken:(nullable FBSDKAccessToken *)token
                   isCancelled:(BOOL)isCancelled
-           grantedPermissions:(NSSet *)grantedPermissions
-          declinedPermissions:(NSSet *)declinedPermissions
+           grantedPermissions:(NSSet<NSString *> *)grantedPermissions
+          declinedPermissions:(NSSet<NSString *> *)declinedPermissions
 NS_DESIGNATED_INITIALIZER;
 @end
+
+#endif
+
+NS_ASSUME_NONNULL_END
