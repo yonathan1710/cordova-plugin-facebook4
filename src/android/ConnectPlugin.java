@@ -754,9 +754,8 @@ public class ConnectPlugin extends CordovaPlugin {
             return;
         }
 
-
-        String cntCurr = args.getString(0);
-        Double cntAmnt = args.getDouble(1);
+        Double cntAmnt = args.getDouble(0);
+        String cntCurr = args.getString(1);
         
         if(cntCurr == null || cntAmnt == null){
             callbackContext.error("Invalid arguments");
@@ -774,7 +773,6 @@ public class ConnectPlugin extends CordovaPlugin {
             params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, cntType);
             params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, cntData);
             params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, cntId);
-
 
             logger.logPurchase(cntAmnt, cntCurr, params);
             callbackContext.success();
