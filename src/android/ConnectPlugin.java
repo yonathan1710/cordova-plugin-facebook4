@@ -756,7 +756,8 @@ public class ConnectPlugin extends CordovaPlugin {
 
         String amnt = args.getString(0);
         BigDecimal cntAmnt = new BigDecimal( amnt ) ;
-        String cntCurr = args.getString(1);
+        String currVal = args.getString(1);
+        Currency cntCurr= Currency.getInstance(currVal);
         
         if(cntCurr == null || cntAmnt == null){
             callbackContext.error("Invalid arguments");
