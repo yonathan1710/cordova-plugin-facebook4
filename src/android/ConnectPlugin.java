@@ -364,27 +364,25 @@ public class ConnectPlugin extends CordovaPlugin {
         return false;
     }
 
-    private void executeGetDeferredApplink(JSONArray args,
-                                           final CallbackContext callbackContext) {
+    private void executeGetDeferredApplink(JSONArray args, final CallbackContext callbackContext) {
         AppLinkData.fetchDeferredAppLinkData(cordova.getActivity().getApplicationContext(),
-                new AppLinkData.CompletionHandler() {
-                    @Override
-                    public void onDeferredAppLinkDataFetched(
-                            AppLinkData appLinkData) {
-                        PluginResult pr;
-                        if (appLinkData == null) {
-                            pr = new PluginResult(PluginResult.Status.OK, "");
-                        } else {
-                            pr = new PluginResult(PluginResult.Status.OK, appLinkData.getTargetUri().toString());
-                        }
+        new AppLinkData.CompletionHandler() {
+            @Override
+            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+                PluginResult pr;
+                if (appLinkData == null) {
+                    pr = new PluginResult(PluginResult.Status.OK, "");
+                } else {
+                    pr = new PluginResult(PluginResult.Status.OK, appLinkData.getTargetUri().toString());
+                }
 
-                        callbackContext.sendPluginResult(pr);
-                        return;
-                    }
-                });
+                callbackContext.sendPluginResult(pr);
+                return;
+            }
+        });
     }
 
-    private void executeAppInvite(JSONArray args, CallbackContext callbackContext) {
+    private void executeAppInvite(JSONArray args, CallbackContext callbackContext) throws JSONException {
         String url = null;
         String picture = null;
         JSONObject parameters;
@@ -785,7 +783,7 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeLogin(JSONArray args, CallbackContext callbackContext) {
+    private void executeLogin(JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d(TAG, "login FB");
         // Get the permissions
         Set<String> permissions = new HashSet<String>(args.length());
