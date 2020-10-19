@@ -11,7 +11,8 @@ test/www/*.js
 *.xcworkspace
 !default.xcworkspace
 xcuserdata
-
+.project
+settings.json
 # Android Projects
 
 *.apk
