@@ -754,7 +754,8 @@ public class ConnectPlugin extends CordovaPlugin {
             return;
         }
 
-        BigDecimal cntAmnt = args.getBigDecimal(0);
+        String amnt = args.getString(0);
+        BigDecimal cntAmnt = new BigDecimal( amnt ) ;
         String cntCurr = args.getString(1);
         
         if(cntCurr == null || cntAmnt == null){
@@ -1095,8 +1096,8 @@ public class ConnectPlugin extends CordovaPlugin {
         Bundle params = new Bundle();
         Log.i(TAG,"Started logAdClickEvent");
         Log.i(TAG,"adType: "+adType);
-        params.putString(EVENT_PARAM_AD_TYPE, adType);
-        logger.logEvent(EVENT_NAME_AD_CLICK, params);
+        params.putString(AppEventsConstants.EVENT_PARAM_AD_TYPE, adType);
+        logger.logEvent(AppEventsConstants.EVENT_NAME_AD_CLICK, params);
         callbackContext.success();
     }
 
@@ -1183,7 +1184,7 @@ public class ConnectPlugin extends CordovaPlugin {
     }
 
     private void executeEventProductCustomize(CallbackContext callbackContext) {
-        logger.logEvent(AppEventsConstants.EVENT_NAME_CUSTOMIZE_PRODUCT, params);
+        logger.logEvent(AppEventsConstants.EVENT_NAME_CUSTOMIZE_PRODUCT);
         callbackContext.success();
     }
 
