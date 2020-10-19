@@ -326,27 +326,27 @@ public class ConnectPlugin extends CordovaPlugin {
             executeGetDeferredApplink(args, callbackContext);
             return true;
 
-        } else if (action.equals("logAdClickEvent"){
+        } else if (action.equals("logAdClickEvent")){
             executelogAdClickEvent(args, callbackContext);
             return true;
 
-        } else if (action.equals("logViewContent"){
+        } else if (action.equals("logViewContent")){
             executeLogViewContent(args, callbackContext);
             return true;
 
-        } else if (action.equals("logEventSearch"){
+        } else if (action.equals("logEventSearch")){
             executeEventSearch(args, callbackContext);
             return true;
 
-        } else if (action.equals("logEventProductCartAdd"){
+        } else if (action.equals("logEventProductCartAdd")){
             executeEventProductCartAdd(args, callbackContext);
             return true;
 
-        } else if (action.equals("logEventProductCustomize"){
+        } else if (action.equals("logEventProductCustomize")){
             executeEventProductCustomize(callbackContext);
             return true;
 
-        }  else if (action.equals("logEventInitiateCheckout"){
+        }  else if (action.equals("logEventInitiateCheckout")){
             executeEventInitiateCheckout(args, callbackContext);
             return true;
 
