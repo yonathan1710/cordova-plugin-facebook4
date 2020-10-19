@@ -741,7 +741,7 @@ public class ConnectPlugin extends CordovaPlugin {
         }
     }
 
-    private void executeLogPurchase(JSONArray args, CallbackContext callbackContext) throws JSONException {
+    private void executeLogPurchase(JSONArray args, CallbackContext callbackContext) {
         /*
         * While calls to logEvent can be made to register purchase events,
         * there is a helper method that explicitly takes a currency indicator.
@@ -785,7 +785,7 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeLogin(JSONArray args, CallbackContext callbackContext) throws JSONException {
+    private void executeLogin(JSONArray args, CallbackContext callbackContext) {
         Log.d(TAG, "login FB");
         // Get the permissions
         Set<String> permissions = new HashSet<String>(args.length());
@@ -1189,7 +1189,7 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeEventInitiateCheckout(JSONArray args, CallbackContext callbackContext) throws JSONException{
+    private void executeEventInitiateCheckout(JSONArray args, CallbackContext callbackContext) {
         if (args.length() < 7){
             // Not enough parameters
             callbackContext.error("Invalid arguments");
