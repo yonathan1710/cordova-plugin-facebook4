@@ -253,7 +253,7 @@ public class ConnectPlugin extends CordovaPlugin {
             }
         });
     }
-
+/*
     @Override
     public void onResume(boolean multitasking) {
         super.onResume(multitasking);
@@ -266,7 +266,7 @@ public class ConnectPlugin extends CordovaPlugin {
         super.onPause(multitasking);
         AppEventsLogger.deactivateApp(cordova.getActivity());
     }
-
+*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
