@@ -18,6 +18,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.appevents.AppEventsConstants;
 import com.facebook.applinks.AppLinkData;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
