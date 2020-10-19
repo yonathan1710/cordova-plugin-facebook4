@@ -742,7 +742,7 @@ public class ConnectPlugin extends CordovaPlugin {
         }
     }
 
-    private void executeLogPurchase(JSONArray args, CallbackContext callbackContext) {
+    private void executeLogPurchase(JSONArray args, CallbackContext callbackContext) throws JSONException {
         /*
         * While calls to logEvent can be made to register purchase events,
         * there is a helper method that explicitly takes a currency indicator.
@@ -1087,7 +1087,7 @@ public class ConnectPlugin extends CordovaPlugin {
         return null;
     }
 
-    private void executelogAdClickEvent (JSONArray args, CallbackContext callbackContext) {
+    private void executelogAdClickEvent (JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (args.length() == 0) {
             // Not enough parameters
             callbackContext.error("Invalid arguments");
@@ -1102,7 +1102,7 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeLogViewContent(JSONArray args, CallbackContext callbackContext) {
+    private void executeLogViewContent(JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (args.length() < 2)
         {
             // Not enough parameters
@@ -1135,7 +1135,7 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeEventSearch(JSONArray args, CallbackContext callbackContext) {
+    private void executeEventSearch(JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (args.length() < 5)
         {
             // Not enough parameters
@@ -1160,7 +1160,7 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeEventProductCartAdd(JSONArray args, CallbackContext callbackContext) {
+    private void executeEventProductCartAdd(JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (args.length() < 5)
         {
             // Not enough parameters
@@ -1184,12 +1184,12 @@ public class ConnectPlugin extends CordovaPlugin {
         callbackContext.success();
     }
 
-    private void executeEventProductCustomize(CallbackContext callbackContext) {
+    private void executeEventProductCustomize(CallbackContext callbackContext) throws JSONException {
         logger.logEvent(AppEventsConstants.EVENT_NAME_CUSTOMIZE_PRODUCT);
         callbackContext.success();
     }
 
-    private void executeEventInitiateCheckout(JSONArray args, CallbackContext callbackContext) {
+    private void executeEventInitiateCheckout(JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (args.length() < 7){
             // Not enough parameters
             callbackContext.error("Invalid arguments");
