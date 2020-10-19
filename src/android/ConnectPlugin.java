@@ -754,7 +754,7 @@ public class ConnectPlugin extends CordovaPlugin {
             return;
         }
 
-        Double cntAmnt = args.getDouble(0);
+        BigDecimal cntAmnt = args.getBigDecimal(0);
         String cntCurr = args.getString(1);
         
         if(cntCurr == null || cntAmnt == null){
