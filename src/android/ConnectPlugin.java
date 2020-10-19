@@ -747,8 +747,7 @@ public class ConnectPlugin extends CordovaPlugin {
         * there is a helper method that explicitly takes a currency indicator.
         */
 
-        if (args.length() < 2)
-        {
+        if (args.length() < 2) {
             // Not enough parameters
             callbackContext.error("Invalid arguments");
             return;
@@ -758,7 +757,7 @@ public class ConnectPlugin extends CordovaPlugin {
         String cntCurr = args.getString(0);
         Double cntAmnt = args.getDouble(1);
         
-        if(cntCurr == null && cntAmnt == null){
+        if(cntCurr == null || cntAmnt == null){
             callbackContext.error("Invalid arguments");
             return;
         }
