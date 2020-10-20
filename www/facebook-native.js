@@ -29,6 +29,38 @@ exports.logPurchase = function logPurchase (value, currency, s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'logPurchase', [value, currency])
 }
 
+exports.logPurchaseWithContentInfo = function logPurchaseWithContentInfo (value, currency, contentType, content, contentId, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logPurchase', [value, currency, contentType, content, contentId])
+}
+
+exports.logAdClickEvent = function logAdClickEvent (adType, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logAdClickEvent', [adType])
+}
+
+exports.logViewContent = function logViewContent (contentType, content, contentId, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logViewContent', [contentType, content, contentId])
+}
+
+exports.logViewContentWithCurrency = function logViewContentWithCurrency (contentType, content, contentId, currency, value, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logViewContent', [contentType, content, contentId, currency, value])
+}
+
+exports.logEventSearch = function logEventSearch (contentType, content, contentId, searchString, successResult, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logEventSearch', [contentType, content, contentId, searchString, successResult])
+}
+
+exports.logEventProductCartAdd = function logEventProductCartAdd (contentType, content, contentId, currency, value, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logEventProductCartAdd', [contentType, content, contentId, currency, value])
+}
+
+exports.logEventProductCustomize = function logEventProductCustomize ( s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logEventProductCustomize', [])
+}
+
+exports.logEventInitiateCheckout = function logEventInitiateCheckout (contentType, content, contentId, nrItems, hasPaymentInfo, currency, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'logEventInitiateCheckout', [contentType, content, contentId, nrItems, hasPaymentInfo, currency])
+}
+
 exports.getAccessToken = function getAccessToken (s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'getAccessToken', [])
 }
